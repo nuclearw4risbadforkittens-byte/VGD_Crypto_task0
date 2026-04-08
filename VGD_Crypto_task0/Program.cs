@@ -66,7 +66,7 @@ namespace VGD_Crypto_task0
 
 
             Cool_WriteLine(q, alph);
-
+            //
         }
     }
 }
