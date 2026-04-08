@@ -1,1 +1,1 @@
-# VGD_Crypto_task0
+Crypto is cool as f***

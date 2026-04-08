@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,43 +13,60 @@ namespace VGD_Crypto_task0
     {
         static void Cool_WriteLine(int[] w, string alph)
         {
+            Console.WriteLine("Частоты символов в тексте:");
             for (int i = 0; i < w.Length; i++)
             {
-                Console.WriteLine(alph[i] + " " + w[i]);
+                Console.WriteLine(alph[i] + " - " + w[i]);
             }
         }
 
-        static void Main(string[] args)
+        static List<string> ReadFromFile(string filename)
         {
-            string s = Console.ReadLine().ToLower();
+            List<string> Q = new List<string>();
+            using (StreamReader sr = new StreamReader(filename))
+            {
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    Q.Add(line);
+                }
+            }
+            return Q;
+        }
+
+        static void Main(string[] args)
+        {   
+
+           
             int[] q = new int[33];
             string alph = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
-            for (int i = 0; i < s.Length; i++)
+            string filename = "input.txt";
+            List<string> Q = ReadFromFile(filename);
+            for (int i = 0; i < Q.Count; i++)
             {
-                char c = s[i];
-                if(alph.Contains(c))
+                string s = Q[i].ToLower();
+                for (int ii = 0; ii < s.Length; ii++)
                 {
-                    if (s[i] == 'ё')
+                    char c = s[ii];
+                    if (alph.Contains(c))
                     {
-                        q[6]++;
+                        if (s[ii] == 'ё')
+                        {
+                            q[6]++;
+                        }
+                        else
+                        {
+                            q[(int)s[ii] - 1072]++;
+                        }
                     }
-                    else
-                    {
-                        q[(int)s[i] - 1072]++;
-                    }
-                }
-                //Console.WriteLine(c + " " + (int)c);
+                    //Console.WriteLine(c + " " + (int)c);
 
+                }
             }
+
 
             Cool_WriteLine(q, alph);
 
-            //for (int i = 0; i < q.Length; i++)
-            //{
-            //    Console.WriteLine(q[i]);
-            //}
-
-            // Комментарий для первого коммита
         }
     }
 }
