@@ -47,6 +47,8 @@ namespace VGD_Crypto_task0
             //{
             //    Console.WriteLine(q[i]);
             //}
+
+            // Комментарий для первого коммита
         }
     }
 }
